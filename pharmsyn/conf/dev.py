@@ -7,7 +7,7 @@ load_dotenv()
 DEBUG = os.getenv('DEBUG')
 PRODUCTION=os.environ.get("PRODUCTION")
 SECRET_KEY=os.environ.get("SECRET_KEY")
-ALLOWED_HOSTS=os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS=['deff.onrender.com','*']
 
 # Database
 DATABASES = {
