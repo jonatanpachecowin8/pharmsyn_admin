@@ -1,11 +1,18 @@
 from django.views import generic
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.http import Http404
+
+
 from core.models.cliente.user import User
 from core.models.ventas.order import Order
 from core.models.product.product import Product
+from core.models.personal.branch import Branch
+
 from django.db.models import Sum
+
 import json
 from django.db.models.functions import TruncDate
+from collections import defaultdict
 
 class HomeView(generic.TemplateView):
     '''
@@ -92,7 +99,28 @@ class HomeView(generic.TemplateView):
         )        
         # print(order_data_queryset)
         stacked_data = self.process_order_data(order_data_queryset)
-        print(stacked_data)
+        # print(stacked_data)
+        formatted_data = defaultdict(dict)
+
+        for entry in stacked_data:
+            date = entry['date']
+            for key, value in entry.items():
+                if key != 'date' and key != 'branch_id':
+                    try:
+                        branch = get_object_or_404(Branch, pk=key)
+                        branch_name = branch.name  # Asumiendo que el modelo Branch tiene un campo 'name'
+                    except Http404:
+                        branch_name = "Sucursal Desconocida" 
+                    # branch = get_object_or_404(Branch, pk=key)
+                    # print(branch.name)
+                    # branch_name = Branch.get(key, f"branch_{key}")
+                    formatted_data[date][branch.name] = float(value)
+
+        # Convertimos el diccionario a la lista de objetos con el formato requerido
+        stacked_data_1 = [{'y': str(date), **branches} for date, branches in formatted_data.items()]
+
+        # Verificamos los datos formateados
+        # print(stacked_data_1)
 
         # Agregar datos al contexto
         context['new_users_count'] = new_users_count
@@ -100,17 +128,19 @@ class HomeView(generic.TemplateView):
         context['total_sales_amount'] = total_sales_amount
         context['top_products'] = top_products
         context['top_products_j'] = json.dumps(top_products_formatted)
+        context['sales_x_branch'] = json.dumps(stacked_data_1)
+        
         
         return self.render_to_response(context)
 
 
     def process_order_data(self,order_data_queryset):
         stacked_data = []
-        print(order_data_queryset)
+        # print(order_data_queryset)
 
         for order in order_data_queryset:
             date = order['date']  # Acceder a la fecha desde el diccionario
-            print(date)
+            # print(date)
             branch_id = order['branch_id']  # Acceder al branch_id desde el diccionario
             total_amount = order['total_amount']  # Acceder al total_amount desde el diccionario
                 

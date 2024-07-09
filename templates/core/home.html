@@ -32,7 +32,7 @@
                   <div class="col-9 text-right align-self-center">
                     <div class="m-l-10">
                       <h5 class="mt-0">{{ new_users_count }}</h5>
-                      <p class="mb-0 text-muted">New Users</p>
+                      <p class="mb-0 text-muted">Nuevos Clientes</p>
                     </div>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
                   <div class="col-9 align-self-center text-right">
                     <div class="m-l-10">
                       <h5 class="mt-0">{{ new_orders_count }}</h5>
-                      <p class="mb-0 text-muted">New Orders</p>
+                      <p class="mb-0 text-muted">Nuevas Ordernes</p>
                     </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@
     
         <div class="card">
           <div class="card-body">
-            <h4 class="mt-0 header-title">Every Day Revenue</h4>
+            <h4 class="mt-0 header-title">Ingresos por Sucursal</h4>
             <p class="text-muted mb-4 font-14"></p>
             <div id="morris-bar-stacked" class="morris-chart"></div>
           </div>
@@ -131,6 +131,7 @@
 
 <script>
   var topProducts = {{ top_products_j|safe }};
+  var salesBranch = {{ sales_x_branch|safe }};
 </script>
 
 

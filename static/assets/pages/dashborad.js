@@ -24,7 +24,7 @@
             data: data,
             xkey: xkey,
             ykeys: ykeys,
-            preUnits: "$",
+            preUnits: "Bs",
             barSizeRatio: 0.4,
             stacked: true,
             labels: labels,
@@ -172,12 +172,17 @@
 
         //creating Stacked chart
         var $stckedData = [
-            {y: '1', a: 45, b: 180},
+            {y: '1', a: 45, b: 190},
+            {y: '2', a: 75, b: 65},
+            {y: '3', a: 100, b: 90},
+            {y: '4', a: 75, b: 65},
             {y: '2', a: 75, b: 65},
             {y: '3', a: 100, b: 90},
             {y: '4', a: 75, b: 65}
         ];
-        this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#44a2d2', '#e6edf3']);
+
+        console.log(salesBranch)
+        this.createStackedChart('morris-bar-stacked', salesBranch, 'y', ['Sucursal Principal', 'Sucursal 2 Agoto'], ['Sucursal Principal', 'Sucursal 2 Agoto'], ['#44a2d2', '#e6edf3']);
 
 
 
