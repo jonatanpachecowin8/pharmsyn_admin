@@ -7,7 +7,7 @@ load_dotenv()
 DEBUG = os.getenv('DEBUG')
 PRODUCTION=os.environ.get("PRODUCTION")
 SECRET_KEY=os.environ.get("SECRET_KEY")
-ALLOWED_HOSTS=['pharmsyn-admin.onrender.com','*']
+ALLOWED_HOSTS=["pharmsyn-admin.onrender.com","*"]
 
 # Database
 DATABASES = {
