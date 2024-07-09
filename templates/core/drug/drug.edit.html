@@ -1,0 +1,115 @@
+{% extends "base/index.html" %} 
+
+{% block content %}
+{% load static %} 
+
+
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <li class="breadcrumb-item"><a href="#">Pharmsyn</a></li>
+                            <li class="breadcrumb-item"><a href="#">Product</a></li>
+                            <li class="breadcrumb-item active">Editar</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Modulo Producto</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="mt-0 header-title">Editar Product</h4>
+
+                        <form id="editar-personal-form" method="post" action="{% url 'core:editar_product' product_id=data.product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ data.product.id }}">
+            
+                        <div class="form-group row">
+                            <label for="inputNombres" class="col-sm-2 col-form-label">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputNombres" name="title" value="{{ data.product.title }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputApellidos" class="col-sm-2 col-form-label">Stock:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputApellidos" name="stock" value="{{ data.product.stock }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputTelefono" class="col-sm-2 col-form-label">Precio:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputTelefono" name="price" value="{{ data.product.price }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputTelefono" class="col-sm-2 col-form-label">Precio Venta:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="inputEmail" name="sale_price" value="{{ data.product.sale_price }}">
+                            </div>
+                        </div>
+                           
+                        <div class="form-group row">
+                            <label for="inputSalario" class="col-sm-2 col-form-label">Descripcion:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputSalario" name="description" value="{{ data.product.description }}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-2 col-form-label">Laboratorio:</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" id="inputCargoId" name="laboratory_id" value="{{ data.product.laboratory.id }}">
+                                <select class="form-control" id="inputCargo" name="cargo">
+                                    {% for laboratory in data.laboratories %}
+                                        <option value="{{ laboratory.id }}" {% if data.product.laboratory.id == laboratory.id %} selected {% endif %}>{{ laboratory.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-2 col-form-label">Categoria:</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" id="inputCargoId" name="category_id" value="{{ data.product.category.id }}">
+                                <select class="form-control" id="inputCargo" name="cargo">
+                                    {% for category in data.categories %}
+                                        <option value="{{ category.id }}" {% if data.product.category.id == category.id %} selected {% endif %}>{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row">
+                            <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Creado :</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="datetime" name="fecha_nacimiento" value="{{ data.product.created_at|date:'Y-m-d' }}" id="example-datetime-local-input">
+                            </div>
+                        </div> -->
+                        <div class="form-group row">
+                            <div class="col-sm-10 offset-sm-2">
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+
+
+{% endblock %}

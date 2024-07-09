@@ -1,0 +1,102 @@
+{% extends "base/index.html" %} 
+
+{% block content %}
+{% load static %} 
+
+
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <li class="breadcrumb-item"><a href="#">Pharmsyn</a></li>
+                            <li class="breadcrumb-item"><a href="#">Inventario</a></li>
+                            <li class="breadcrumb-item active">Editar</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Modulo Inventario</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="mt-0 header-title">Editar Inventario</h4>
+
+                        <form id="editar-personal-form" method="post" action="{% url 'core:editar_inventory' inventory_id=data.inventory.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ data.inventory.id }}">
+
+                        <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-2 col-form-label">Product:</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" id="inputCargoId" name="product_id" value="{{ data.inventory.product.id }}">
+                                <select class="form-control" id="inputCargo" name="cargo">
+                                    {% for product in data.products %}
+                                        <option value="{{ product.id }}" {% if data.inventory.product.id == product.id %} selected {% endif %}>{{ product.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-2 col-form-label">Sucursal:</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" id="inputCargoId" name="branch_id" value="{{ data.inventory.branch.id }}">
+                                <select class="form-control" id="inputCargo" name="cargo">
+                                    {% for branch in data.branchs %}
+                                        <option value="{{ branch.id }}" {% if data.inventory.branch.id == branch.id %} selected {% endif %}>{{ branch.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+            
+                        <div class="form-group row">
+                            <label for="inputNombres" class="col-sm-2 col-form-label">Cantidad:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputNombres" name="quantity" value="{{ data.inventory.quantity }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputEstado" class="col-sm-2 col-form-label">Tipo Movimiento:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="inputEstado" name="movement_type">
+                                    <option value="IN" {% if data.inventory.movement_type == 'IN' %} selected {% endif %}>IN</option>
+                                    <option value="OUT" {% if data.inventory.movement_type == 'OUT' %} selected {% endif %}>OUT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputNombres" class="col-sm-2 col-form-label">Modificado por:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputNombres" disabled="disabled"  name="modified_by" value="{{ data.inventory.modified_by.id }} - {{ data.inventory.modified_by.nombres }} {{ data.inventory.modified_by.apellidos }}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-sm-10 offset-sm-2">
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+
+
+{% endblock %}
