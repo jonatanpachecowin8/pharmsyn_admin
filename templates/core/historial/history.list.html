@@ -1,0 +1,79 @@
+{% extends "base/index.html" %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <li class="breadcrumb-item"><a href="#">Pharmsyn</a></li>
+                            <li class="breadcrumb-item"><a href="#">Historial</a></li>
+                            <li class="breadcrumb-item active">Farmaceutico</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Modulo Historal Farmaceutico</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="mt-0 header-title">Historial Farmaceutico</h4>
+                        <p class="text-muted mb-4 font-14">Muestra todo el historial farmaceutico de un cliente.</p>
+
+                        <div class="table-rep-plugin">
+                            <div class="table-responsive b-0" data-pattern="priority-columns">
+                                <table id="tech-companies-1" class="table  table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th data-priority="1">Cod Cliente</th>
+                                            <th data-priority="1">Nombre del Cliente</th>
+                                            <th data-priority="1">Accion</th>
+                                            <th data-priority="1">Estado</th>
+                                            <th data-priority="3">Fecha</th>
+                                            <!-- <th data-priority="2">Direccion Entrega</th> -->
+                                            <th data-priority="1">Sucursal</th>
+                                            <!-- <th data-priority="6">Ask</th>
+                                                <th data-priority="6">1y Target Est</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in orders %}
+                                        <tr>
+                                            <th>{{ order.user.id }} </th>
+                                            <th>{{ order.user.first_name }} {{ order.user.last_name }}</th>
+                                            <th>Compra</th>
+                                            <th>{{ order.status }} </th>
+                                            <th>{{ order.order_date }} </th>
+                                            <!-- <th>{{ order.delivery_date }} </th> -->
+                                            <th>{{ order.branch.name }} </th>
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+
+
+{% endblock %}

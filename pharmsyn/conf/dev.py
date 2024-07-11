@@ -9,6 +9,11 @@ PRODUCTION=os.environ.get("PRODUCTION")
 SECRET_KEY=os.environ.get("SECRET_KEY")
 ALLOWED_HOSTS=['pharmsyn.onrender.com','*']
 
+LOGIN_URL = 'core:login'
+LOGIN_REDIRECT_URL = 'core:home'
+LOGOUT_REDIRECT_URL = 'core:login'
+
+
 # Database
 DATABASES = {
     'default': {

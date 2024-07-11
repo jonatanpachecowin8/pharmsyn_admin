@@ -27,6 +27,23 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
+
+            <ul class="nav nav-pills border-bottom mb-5 pb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#btn-basic">Listado</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#btn-group">Agregar Nuevo</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                                    
+              <div class="tab-pane fade show active" id="btn-basic" role="tabpanel">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="card">
+                              <div class="card-body">
+
             <h4 class="mt-0 header-title">Listado del productos</h4>
             <p class="text-muted mb-4 font-14">
               Informacion de todo los productos registrado en el sistema. 
@@ -75,8 +92,101 @@
                 {% endfor %}
               </tbody>
             </table>
-          </div>
-        </div>
+
+          </div><!--end card-body-->
+        </div><!-- end card -->
+    </div><!-- end col -->
+  </div><!-- end row -->                                        
+</div><!--end tab-pane-->
+
+<div class="tab-pane fade" id="btn-group" role="tabpanel">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <div class="card-body">
+
+                <h4 class="mt-0 header-title">Agregar Nuevo Producto</h4>
+
+                <form id="editar-personal-form" method="post" action="{% url 'core:add_product' %}">
+                {% csrf_token %}
+                <!-- <input type="hidden" name="product_id" value="{{ data.product.id }}"> -->
+    
+                <div class="form-group row">
+                    <label for="inputNombres" class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputNombres" name="title" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputApellidos" class="col-sm-2 col-form-label">Stock:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputApellidos" name="stock" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputTelefono" class="col-sm-2 col-form-label">Precio:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputTelefono" name="price" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputTelefono" class="col-sm-2 col-form-label">Precio Venta:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="inputEmail" name="sale_price" value="">
+                    </div>
+                </div>
+                   
+                <div class="form-group row">
+                    <label for="inputSalario" class="col-sm-2 col-form-label">Descripcion:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputSalario" name="description" value="">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="inputCargo" class="col-sm-2 col-form-label">Laboratorio:</label>
+                    <div class="col-sm-10">
+                        <input type="hidden" id="inputCargoId" name="laboratory_id" value="{{ laboratories.first }}">
+                        <select class="form-control" id="inputCargo" name="cargo">
+                            {% for laboratory in laboratories %}
+                                <option value="{{ laboratory.id }}">{{ laboratory.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputCargo" class="col-sm-2 col-form-label">Categoria:</label>
+                    <div class="col-sm-10">
+                        <input type="hidden" id="inputCargoId" name="category_id" value="{{ categories.id }}">
+                        <select class="form-control" id="inputCargo" name="cargo">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}" >{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+
+                
+              </div><!-- end card-body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+      </div><!-- end row -->                                        
+    </div><!--end tab-pane-->
+
+  </div><!--end tab-contant-->
+
+
+
+
+
+          </div><!--end card-body-->
+        </div><!-- end card -->
       </div>
       <!-- end col -->
     </div>

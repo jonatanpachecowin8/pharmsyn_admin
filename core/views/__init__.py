@@ -8,6 +8,10 @@ from core.views.product_edit import ProductEditView
 from core.views.inventory import InventoryView
 from core.views.inventario_edit import InventarioEditView
 
+from core.views.history import HistoryView
+
+from core.views.login import CustomLoginView
+
 __all__=[
     HomeView,
     PersonalView,
@@ -15,5 +19,7 @@ __all__=[
     ProductView,
     ProductEditView,
     InventoryView,
-    InventarioEditView
+    InventarioEditView,
+    HistoryView,
+    CustomLoginView
 ]

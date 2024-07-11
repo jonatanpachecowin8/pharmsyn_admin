@@ -3,9 +3,10 @@ from django.shortcuts import redirect, get_object_or_404, render
 from core.models import InventoryMovement
 from django.utils import timezone
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class InventoryView(generic.TemplateView):
+class InventoryView(LoginRequiredMixin, generic.TemplateView):
     '''
     TemplateView usado para nuestro home.
     

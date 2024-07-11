@@ -13,8 +13,10 @@ from django.db.models import Sum
 import json
 from django.db.models.functions import TruncDate
 from collections import defaultdict
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class HomeView(generic.TemplateView):
+
+class HomeView(LoginRequiredMixin, generic.TemplateView):
     '''
     TemplateView usado para nuestro home.
     

@@ -3,9 +3,10 @@ from django.shortcuts import redirect, get_object_or_404, render
 from core.models import Personal
 from django.utils import timezone
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class PersonalView(generic.TemplateView):
+class PersonalView(LoginRequiredMixin, generic.TemplateView):
     '''
     TemplateView usado para nuestro home.
     

@@ -73,14 +73,14 @@
                   aria-expanded="false"
                 >
                   <img
-                    src="{% static 'assets/images/users/avatar-1.jpg' %}"
+                    src="{% static 'assets/images/admin_logo.png' %}"
                     alt="user"
                     class="rounded-circle"
                   />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown">
                   <!-- item-->
-                  <div class="dropdown-item noti-title">
+                  <!-- <div class="dropdown-item noti-title">
                     <h5>Welcome</h5>
                   </div>
                   <a class="dropdown-item" href="#"
@@ -99,11 +99,14 @@
                   <a class="dropdown-item" href="#"
                     ><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i>
                     Lock screen</a
-                  >
+                  > -->
+                  <form id="logout-form" action="{% url 'core:logout' %}" method="post" style="display: none;">
+                    {% csrf_token %}
+                  </form>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#"
-                    ><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a
-                  >
+                  <a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">
+                    <i class="mdi mdi-logout m-r-5 text-muted"></i> Logout
+                </a>
                 </div>
               </li>
               <li class="menu-item list-inline-item">
@@ -156,6 +159,11 @@
                   </li>
                   
                 </ul>
+              </li>
+              <li class="has-submenu">
+                <a href="{% url 'core:historial' %}"
+                  ><i class="mdi mdi-layers"></i>Historial Farmaceutico</a
+                >
               </li>
 
               <!-- <li class="has-submenu">
@@ -314,6 +322,10 @@
 <script src="{% static 'assets/plugins/moment/moment.js' %}"></script>
 <script src="{% static 'assets/plugins/x-editable/js/bootstrap-editable.min.js' %}"></script>
 <script src="{% static 'assets/pages/xeditable.js' %}"></script>
+
+        <!-- Responsive-table-->
+        <script src="{% static 'assets/plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js' %}"></script>
+        <script src="{% static 'assets/pages/re-table.init.js' %}"></script>
 
     <script>
       $(document).ready(function() {

@@ -1,0 +1,105 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>PharmsynAdmin</title>
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="Mannatthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
+
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+
+    </head>
+
+
+    <body>
+
+        <!-- Begin page -->
+        <div class="accountbg"></div>
+        <div class="wrapper-page">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="text-center mt-2 mb-4">
+                        <a href="index.html" class="logo logo-admin"><img src="{% static 'assets/images/pharmsyn_logo_2.png' %}" height="20" alt="logo"></a>
+                    </div>
+
+                    <div class="px-3 pb-3">
+                        <form method="post" class="form-horizontal m-t-20" action="{% url 'core:login' %}">
+                            {% csrf_token %}
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="text" required="" placeholder="Username" name="username">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="password" required="" placeholder="Password" name="password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Recordarme</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center row m-t-20">
+                                <div class="col-12">
+                                    <button class="btn btn-danger btn-block waves-effect waves-light" type="submit">Log In</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-t-10 mb-0 row">
+                                <div class="col-sm-7 m-t-20">
+                                    <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> <small>Forgot your password ?</small></a>
+                                </div>
+                                <div class="col-sm-5 m-t-20">
+                                    <a href="pages-register.html" class="text-muted"><i class="mdi mdi-account-circle"></i> <small>Create an account ?</small></a>
+                                </div>
+                            </div>
+                        </form>
+
+                        {% if form.errors %}
+                        <div class="error">
+                            <p>Invalid username or password</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- jQuery  -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/popper.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/modernizr.min.js' %}"></script>
+        <script src="{% static 'assets/js/waves.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrollTo.min.js' %}"></script>
+
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.js' %}"></script>
+
+    </body>
+</html>

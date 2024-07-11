@@ -4,9 +4,10 @@ from core.models import Personal, Rol
 from django.utils import timezone
 from django.urls import reverse_lazy
 from datetime import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class PersonalEditView(generic.TemplateView):
+class PersonalEditView(LoginRequiredMixin, generic.TemplateView):
     '''
     TemplateView usado para nuestro home.
     
